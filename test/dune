@@ -1,0 +1,3 @@
+(test
+ (name Testiter)
+ (libraries GenArrayIter ounit2))

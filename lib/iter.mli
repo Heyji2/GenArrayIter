@@ -115,6 +115,7 @@ val fold_left :
   ('acc -> 'a -> 'acc) -> 'acc -> ('a, 'b, 'layout) Genarray.t -> 'acc
 (**
     [fold_left f init a] computes [f (f (... (f init a.(0)) ... ) a.(n-1))] where [n] is the length of the genarray [a].
+
     {b NB} : the function [incr] is used to iterate over all elements of the array [a]
 *)
 
@@ -122,5 +123,6 @@ val fold_right :
   ('a -> 'acc -> 'acc) -> ('a, 'b, 'layout) Genarray.t -> 'acc -> 'acc
 (**
     [fold_right f a init] computes [f a.(0) (f a.(1) (... (f a.(n-1) init)))] where [n] is the length of the genarray [a].
+
     {b NB} : the function [decr] is used to iterate over all elements of the array [a]
 *)

@@ -2,13 +2,13 @@
 opam-version: "2.0"
 synopsis: "An exention of Genarray to allow iterations in various ways"
 description: "A longer description"
-maintainer: ["Alexandre Gouraud"]
-authors: ["Alexandre Gouraud"]
-license: "LICENSE"
-tags: ["topics" "Genarray" "iter" "iteration"]
-homepage: "https://github.com/username/reponame"
-doc: "https://url/to/documentation"
-bug-reports: "https://github.com/username/reponame/issues"
+maintainer: ["Heyji2"]
+authors: ["Heyji2"]
+license: "GPL-3.0-only"
+tags: ["Genarray" "iter" "iteration" "mapping" "folding"]
+homepage: "https://github.com/Heyji2/GenArrayIter"
+doc: "https://github.com/Heyji2/GitPages"
+bug-reports: "https://github.com/Heyji2/GenArrayIter/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.6"}

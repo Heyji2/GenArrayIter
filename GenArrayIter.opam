@@ -5,13 +5,14 @@ description: "A longer description"
 maintainer: ["Heyji2"]
 authors: ["Heyji2"]
 license: "GPL-3.0-only"
-tags: ["Genarray" "iter" "iteration" "mapping" "folding"]
+tags: ["topics" "Genarray" "iter" "iteration" "mapping" "folding"]
 homepage: "https://github.com/Heyji2/GenArrayIter"
-doc: "https://github.com/Heyji2/GitPages"
+doc: "https://heyji2.github.io"
 bug-reports: "https://github.com/Heyji2/GenArrayIter/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.6"}
+  "ounit2"
   "odoc" {with-doc}
 ]
 build: [
@@ -28,4 +29,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/username/reponame.git"
+dev-repo: "git+https://github.com/Heyji2/GenArrayIter.git"

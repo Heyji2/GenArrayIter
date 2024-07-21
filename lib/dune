@@ -1,4 +1,3 @@
 (library
  (public_name GenArrayIter)
- (name GenArrayIter)
-)
+ (name GenArrayIter))

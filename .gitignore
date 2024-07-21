@@ -1,0 +1,5 @@
+.history/
+.vscode/
+__test/
+_build/
+_opam/

@@ -39,30 +39,7 @@ jobs:
         with:
           name: ${{ matrix.os }}-${{ matrix.ocaml-compiler }}-world.exe
           path: _build/default/world.exe
-
-  lint-doc:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout tree
-        uses: actions/checkout@v4
-
-      - name: Set-up OCaml
-        uses: ocaml/setup-ocaml@v3
-        with:
-          ocaml-compiler: "5.2"
-
-      - uses: ocaml/setup-ocaml/lint-doc@v3
-
-      - name: github-pages
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          path: "_build/default/_doc/_html"
-
-      - name: Deploy to GitPages
-        uses: actions/deploy-pages@v4.0.5
-        with:
-          artifact_name: "github-pages" 
-
+  
   lint-fmt:
     runs-on: ubuntu-latest
     steps:

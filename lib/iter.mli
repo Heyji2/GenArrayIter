@@ -8,16 +8,26 @@
 open Bigarray
 
 (**
-    The module [Iter] is a small extention of the [BigArray.Genarray] module to complete missing functionalities : iteration, mapping and folding over Genarrays. 
-    To make these operations possible, an increment/decrement function is needed. There are many ways to iterate over multi-dimension spaces, but here two versions are provided : [incr] and [incr_last] (with their corresponding [decr] and [decr_last] versions).  
+    The [Iter] module is an extention of the {{: https://ocaml.org/manual/5.2/api/Bigarray.Genarray.html}[BigArray.Genarray]}
+    module to complete missing functionalities : iteration, mapping and folding over Genarrays. 
+    To make these operations possible, an increment/decrement function is needed to iterate over 
+    multi-dimensional indexes of the array. There are many ways to iterate over multi-dimension spaces, 
+    but here two versions are provided : [incr] and [incr_last] (with their corresponding [decr] and [decr_last] versions).  
+
+    The module features the following functions : 
+    - iter / iteri
+    - map / mapi
+    - map_inplace / mapi_inplace
+    - fold_left / fold_right
  *)
+
+
+
 
 val iter : ('a -> unit) -> ('a, 'b, 'c) Genarray.t -> unit
 (**
     [iter f a] applies the function [f] in turn to each element of the array [a]. 
     It is equivalent to [f a.(0); f a.(1); ... ; f a.(length a - 1); ()]
-    @param 1 [f] : a function that takes element of the array (second argument) in inputs. 
-    @param 2 [a] : The array on the elements of which the function [f] is applied. 
 *)
 
 val iteri : (int Array.t -> 'a -> unit) -> ('a, 'b, 'c) Genarray.t -> unit
@@ -34,12 +44,12 @@ val map :
   ('a, 'k1, 'layout) Genarray.t ->
   ('b, 'k2, 'layout) Genarray.t
 (**
-   [map f k a] applies the map function [f] in turn to each element of the genarray [a] of type ['a] and outputs another genarray [b], elements of which have type ['b].
+   [map f k a] applies the map function [f] in turn to each element of the array [a] of type ['a] and outputs another array [b], elements of which have type ['b].
 *)
 
 val map_inplace : ('a -> 'a) -> ('a, 'b, 'c) Genarray.t -> unit
 (**
-    Same as [map] but modifies the genarray {i inplace} instead of creating a new one.
+    Same as [map] but modifies the array {i inplace} instead of creating a new one.
 *)
 
 val mapi :
@@ -50,7 +60,7 @@ val mapi :
 (**
     Same as [map] except that the function [f] is applied to the index of the array as the first argument, and to the element itself as second argument.
     [mapi f k a] applies the function [f] in turn to each element of the array [a] and the index [i] : [f i a.(i)] for all possibles values of the index [i]. 
-    The output is a newly generated genarray. 
+    The output is a new array. 
 
     {b NB} : the function [incr] is used to iterate over all elements of the array [a]
 *)
@@ -62,15 +72,10 @@ val mapi_inplace : (int Array.t -> 'a -> 'a) -> ('a, 'b, 'c) Genarray.t -> unit
     {b NB}: the function [incr] is used to iterate over all elements of the array [a]
 *)
 
-(*
-val fold_left : ('acc -> 'a -> 'acc) -> 'acc -> ('a, 'b, 'layout) Genarray.t -> 'acc
-val fold_right: ('a -> 'acc -> 'acc) -> ('a, 'b, 'layout) Genarray.t -> 'acc -> 'acc
-*)
-
 val fold_left :
   ('acc -> 'a -> 'acc) -> 'acc -> ('a, 'b, 'layout) Genarray.t -> 'acc
 (**
-    [fold_left f init a] computes [f (f (... (f init a.(0)) ... ) a.(n-1))] where [n] is the length of the genarray [a].
+    [fold_left f init a] computes [f (f (... (f init a.(0)) ... ) a.(n-1))] where [n] is the length of the array [a].
 
     {b NB} : the function [incr] is used to iterate over all elements of the array [a]
 *)
@@ -78,7 +83,7 @@ val fold_left :
 val fold_right :
   ('a -> 'acc -> 'acc) -> ('a, 'b, 'layout) Genarray.t -> 'acc -> 'acc
 (**
-    [fold_right f a init] computes [f a.(0) (f a.(1) (... (f a.(n-1) init)))] where [n] is the length of the genarray [a].
+    [fold_right f a init] computes [f a.(0) (f a.(1) (... (f a.(n-1) init)))] where [n] is the length of the array [a].
 
     {b NB} : the function [decr] is used to iterate over all elements of the array [a]
 *)

@@ -56,7 +56,7 @@ jobs:
       - name: Deploy to GitPages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: _build/default/_doc/hmtl
+          folder: _build/default/_doc/_html
           target-folder: /
 
   lint-fmt:

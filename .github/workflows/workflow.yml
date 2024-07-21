@@ -53,6 +53,12 @@ jobs:
 
       - uses: ocaml/setup-ocaml/lint-doc@v3
 
+      - name: Deploy to GitPages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: _build/default/_doc/hmtl
+          target-folder: /
+
   lint-fmt:
     runs-on: ubuntu-latest
     steps:

@@ -1,3 +1,7 @@
+;;            License : GPL-3.0-only
+;;            Author : Heyji2 
+;;            Date : 07/2024
+
 (test
  (name Testiter)
  (libraries GenArrayIter ounit2))

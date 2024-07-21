@@ -12,50 +12,6 @@ open Bigarray
     To make these operations possible, an increment/decrement function is needed. There are many ways to iterate over multi-dimension spaces, but here two versions are provided : [incr] and [incr_last] (with their corresponding [decr] and [decr_last] versions).  
  *)
 
-val incr : int array -> int array -> bool
-(**
-    Given an index {m i(i_0,i_1, ..., i_{n-1})} of dimension {m d(d_0, d_1, ..., d_{n-1})} such that 
-    {m \forall k \in [0;n-1]} with {m 0 \leqslant i_k < d_k}, the function increments the index {m i} according to the following recursive algorithm: 
-
-    - if {m i_0 < n_0 - 1} then {m i_0 = i_0 + 1}   
-    - else {m i_0 = 0} and {m i_1} is incremented by one according the same alogrithm as {m i_0}.  
-    
-    So for an index {m i} of dimensions {m d(2,2,3)} in the space {m \{0,1\}\times\{0,1\}\times\{0,1,2\}}, applying [incr] to {m i=(0,0,0)} several time will 
-    give : 
-    - {m i=(0,0,0)}
-    - {m i=(1,0,0)}
-    - {m i=(0,1,0)}
-    - {m i=(1,1,0)}
-    - {m i=(0,0,1)}
-    - {m i=(1,0,1)}
-    - {m i=(0,1,1)}
-    - {m i=(1,1,1)}
-    - {m i=(0,0,2)}
-    - {m i=(1,0,2)}
-    - {m i=(0,1,2)}
-    - {m i=(1,1,2)}
-    @param 1 [index] : an array of size n corresponding to an index of an n dimensions Genarray
-    @param 2 [dims] : an array of size n giving all the dimensions of the first argument : 
-    - [index.(0)] goes from [0] to [dims.(0)]  
-    - [index.(1)] goes from [0] to [dims.(1)]
-    @return True if the increment succeded. False otherwise, meaning the index has reached the end of the array.
-*)
-
-val incr_last : int array -> int array -> bool
-(**
-    Same as [incr] but instead of incrementing the first dimension ({m i_0}) of the index {m i(i_0, ..., i_{n-1})}, increments the last dimension first ({m i_{n-1}})
-*)
-
-val decr : int array -> int array -> bool
-(**
-    Same as [incr] but in decrementing instead of incrementing.
-*)
-
-val decr_last : int array -> int array -> bool
-(**
-    Same as [decr] but instead of decrementing the first dimention ({m i_0}) of the index {m i(i_0, ..., i_{n-1})}, decrements the last dimension first ({m i_{n-1}})
-*)
-
 val iter : ('a -> unit) -> ('a, 'b, 'c) Genarray.t -> unit
 (**
     [iter f a] applies the function [f] in turn to each element of the array [a]. 
@@ -125,4 +81,49 @@ val fold_right :
     [fold_right f a init] computes [f a.(0) (f a.(1) (... (f a.(n-1) init)))] where [n] is the length of the genarray [a].
 
     {b NB} : the function [decr] is used to iterate over all elements of the array [a]
+*)
+
+
+val incr : int array -> int array -> bool
+(**
+    Given an index {m i(i_0,i_1, ..., i_{n-1})} of dimension {m d(d_0, d_1, ..., d_{n-1})} such that 
+    {m \forall k \in [0;n-1]} with {m 0 \leqslant i_k < d_k}, the function increments the index {m i} according to the following recursive algorithm: 
+
+    - if {m i_0 < n_0 - 1} then {m i_0 = i_0 + 1}   
+    - else {m i_0 = 0} and {m i_1} is incremented by one according the same alogrithm as {m i_0}.  
+    
+    So for an index {m i} of dimensions {m d(2,2,3)} in the space {m \{0,1\}\times\{0,1\}\times\{0,1,2\}}, applying [incr] to {m i=(0,0,0)} several time will 
+    give : 
+    - {m i=(0,0,0)}
+    - {m i=(1,0,0)}
+    - {m i=(0,1,0)}
+    - {m i=(1,1,0)}
+    - {m i=(0,0,1)}
+    - {m i=(1,0,1)}
+    - {m i=(0,1,1)}
+    - {m i=(1,1,1)}
+    - {m i=(0,0,2)}
+    - {m i=(1,0,2)}
+    - {m i=(0,1,2)}
+    - {m i=(1,1,2)}
+    @param 1 [index] : an array of size n corresponding to an index of an n dimensions Genarray
+    @param 2 [dims] : an array of size n giving all the dimensions of the first argument : 
+    - [index.(0)] goes from [0] to [dims.(0)]  
+    - [index.(1)] goes from [0] to [dims.(1)]
+    @return True if the increment succeded. False otherwise, meaning the index has reached the end of the array.
+*)
+
+val incr_last : int array -> int array -> bool
+(**
+    Same as [incr] but instead of incrementing the first dimension ({m i_0}) of the index {m i(i_0, ..., i_{n-1})}, increments the last dimension first ({m i_{n-1}})
+*)
+
+val decr : int array -> int array -> bool
+(**
+    Same as [incr] but in decrementing instead of incrementing.
+*)
+
+val decr_last : int array -> int array -> bool
+(**
+    Same as [decr] but instead of decrementing the first dimention ({m i_0}) of the index {m i(i_0, ..., i_{n-1})}, decrements the last dimension first ({m i_{n-1}})
 *)

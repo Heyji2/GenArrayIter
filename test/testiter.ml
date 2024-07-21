@@ -74,7 +74,7 @@ let test_mapi =
 
 let test_fold_left =
   let tab = Genarray.init int c_layout [| 2; 2; 2 |] (fun _ -> 0) in
-  let f i j = i.(0) + (2 * i.(1)) + (4 * i.(2)) in
+  let f i j = j + i.(0) + (2 * i.(1)) + (4 * i.(2)) in
   let mapped_tab = GenArrayIter.Iter.mapi f int tab in
   (* fills in the map with integers from 0 to 2^3-1*)
   let sum = GenArrayIter.Iter.fold_left (fun x acc -> x + acc) 0 mapped_tab in
@@ -83,7 +83,7 @@ let test_fold_left =
 
 let test_fold_right =
   let tab = Genarray.init int c_layout [| 2; 2; 2 |] (fun _ -> 0) in
-  let f i j = i.(0) + (2 * i.(1)) + (4 * i.(2)) in
+  let f i j = j + i.(0) + (2 * i.(1)) + (4 * i.(2)) in
   let mapped_tab = GenArrayIter.Iter.mapi f int tab in
   (* fills in the map with integers from 0 to 2^3-1*)
   let sum = GenArrayIter.Iter.fold_right (fun x acc -> x + acc) mapped_tab 0 in

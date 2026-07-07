@@ -8,17 +8,19 @@
 open Bigarray
 
 (**
-    The [Iter] module is an extention of the {{: https://ocaml.org/manual/5.2/api/Bigarray.Genarray.html}[BigArray.Genarray]}
-    module to complete missing functionalities : iteration, mapping and folding over Genarrays. 
-    To make these operations possible, an increment/decrement function is needed to iterate over 
-    multi-dimensional indexes of the array. There are many ways to iterate over multi-dimension spaces, 
-    but here two versions are provided : [incr] and [incr_last] (with their corresponding [decr] and [decr_last] versions).  
-
+    The [Iter] module is a small extention of the {{: https://ocaml.org/manual/5.2/api/Bigarray.Genarray.html}[BigArray.Genarray]}
+    module to complete missing functionalities : iteration, mapping and folding over arrays of arbitrary dimensions (Genarrays).
+    A much richer (and heavier) library providing (I assume) the same functionality (and much more) in OCaml would be {{: https://github.com/owlbarn/owl/}[Owl]}. 
+    
     The module features the following functions : 
-    - iter / iteri
-    - map / mapi
-    - map_inplace / mapi_inplace
-    - fold_left / fold_right
+    - [iter] / [iteri]
+    - [map] / [mapi]
+    - [map_inplace] / [mapi_inplace]
+    - [fold_left] / [fold_right]
+
+    As well as two functions to increment/decrement an multi-dimensional index : 
+    - [incr] / [decr]
+    - [incr_last] / [decr_last]
  *)
 
 

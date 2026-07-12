@@ -31,14 +31,12 @@ let incr i dims =
   in
   incr_jth i dims 0 l
 
-(**
-    Increment the index i by one. 
-    @param i an array of size n corresponding to an index of an n dimensions Genarray
-    @param dims an array of size n giving all the dimensions of the index i : 
-    i.(0) goes from 0 to dims.(0)
-    i.(1) goes from 0 to dims.(1)
-    etc...
-*)
+(** Increment the index i by one.
+    @param i
+      an array of size n corresponding to an index of an n dimensions Genarray
+    @param dims
+      an array of size n giving all the dimensions of the index i : i.(0) goes
+      from 0 to dims.(0) i.(1) goes from 0 to dims.(1) etc... *)
 let incr_last i dims =
   let l = Array.length i in
   let rec incr_jth i dims j =
@@ -51,9 +49,7 @@ let incr_last i dims =
   in
   incr_jth i dims (l - 1)
 
-(**
-      Same as [incr] but decrementing instead
-*)
+(** Same as [incr] but decrementing instead *)
 let decr i dims =
   let rec decr_jth k dims j =
     if k.(j) > 0 then (
@@ -77,12 +73,14 @@ let decr_last i dims =
   in
   decr_jth i dims (l - 1)
 
-(**
-    `iter f a` applies the function f in turn to all elements of `a`. It is equivalent to : 
-    `f a.(0); f a.(1); ... ; f a.(length a - 1);()`.
-    @param 1 The function to apply to each of the elements of the array, in place. Its type is 'a -> unit 
-    @param 2 The Genarray to which the function f is to be applied : has type ('a, 'c, 'd) Genarray.t 
-    *)
+(** `iter f a` applies the function f in turn to all elements of `a`. It is
+    equivalent to : `f a.(0); f a.(1); ... ; f a.(length a - 1);()`.
+    @param 1
+      The function to apply to each of the elements of the array, in place. Its
+      type is 'a -> unit
+    @param 2
+      The Genarray to which the function f is to be applied : has type ('a, 'c,
+      'd) Genarray.t *)
 let iter f a =
   let n = Genarray.num_dims a in
   let dims = Genarray.dims a in
@@ -93,11 +91,14 @@ let iter f a =
   in
   iter_ith f a index
 
-(**
-    Same as `iter`, but the function is applied to the index of the elemnt as first argument, and the element itself as second argument.
-    @param 1 The function to apply to each of the elements of the array, in place. Its type is int Array.t -> 'a -> unit 
-    @param 2 The Genarray to which the function f is to be applied : has type ('a, 'c, 'd) Genarray.t 
-    *)
+(** Same as `iter`, but the function is applied to the index of the elemnt as
+    first argument, and the element itself as second argument.
+    @param 1
+      The function to apply to each of the elements of the array, in place. Its
+      type is int Array.t -> 'a -> unit
+    @param 2
+      The Genarray to which the function f is to be applied : has type ('a, 'c,
+      'd) Genarray.t *)
 let iteri f a =
   let n = Genarray.num_dims a in
   let dims = Genarray.dims a in
@@ -108,23 +109,28 @@ let iteri f a =
   in
   iter_ith f a index
 
-(**
-    `map f a` applies the function f in turn to all elements of `a` and builds an array with the results returned by f: 
+(** `map f a` applies the function f in turn to all elements of `a` and builds
+    an array with the results returned by f:
     `[|a.(0); f a.(1); ... ; f a.(length a - 1)|]`
-    @param 1 The function to apply to each of the elements of the array, in place. Its type is 'a -> 'b 
-    @param 2 The Genarray to which the function f is to be applied : has type ('a, 'c, 'd) Genarray.t 
-    @return The newly created array of type : ('b, 'c, 'd) Genarray.t
-    *)
+    @param 1
+      The function to apply to each of the elements of the array, in place. Its
+      type is 'a -> 'b
+    @param 2
+      The Genarray to which the function f is to be applied : has type ('a, 'c,
+      'd) Genarray.t
+    @return The newly created array of type : ('b, 'c, 'd) Genarray.t *)
 let map f new_kind a =
   let dims = Genarray.dims a in
   let map_a2b i = f (Genarray.get a i) in
   Genarray.init new_kind (Genarray.layout a) dims map_a2b
 
-(**
-    Applies the function f to all elements of the Genarray a
-    @param 1 The function to apply to each of the elements of the array, in place. Its type is 'a -> 'a 
-    @param 2 The Genarray to which the function f is to be applied : has type 'a Genarray.t 
-    *)
+(** Applies the function f to all elements of the Genarray a
+    @param 1
+      The function to apply to each of the elements of the array, in place. Its
+      type is 'a -> 'a
+    @param 2
+      The Genarray to which the function f is to be applied : has type 'a
+      Genarray.t *)
 let map_inplace f a =
   let n = Genarray.num_dims a in
   let dims = Genarray.dims a in
@@ -135,12 +141,15 @@ let map_inplace f a =
   in
   iter_ith f a index
 
-(**
-    Same as `map` but the function is applied to the index of the element as first argument, and the element itself as second argument.  
-    @param 1 The function to apply to each of the elements of the array, in place. Its type is: `int Array.t -> 'a -> 'b`
-    @param 2 The Genarray to which the function f is to be applied. Its type is :  `('a, 'c, 'd) Genarray.t`
-    @return The newly created array of type : `('b, 'c, 'd) Genarray.t`
-    *)
+(** Same as `map` but the function is applied to the index of the element as
+    first argument, and the element itself as second argument.
+    @param 1
+      The function to apply to each of the elements of the array, in place. Its
+      type is: `int Array.t -> 'a -> 'b`
+    @param 2
+      The Genarray to which the function f is to be applied. Its type is : `('a,
+      'c, 'd) Genarray.t`
+    @return The newly created array of type : `('b, 'c, 'd) Genarray.t` *)
 let mapi f new_kind a =
   let dims = Genarray.dims a in
   let map_a2b i = f i (Genarray.get a i) in

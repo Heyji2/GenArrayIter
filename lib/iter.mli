@@ -18,7 +18,9 @@ open Bigarray
     - [map_inplace] / [mapi_inplace]
     - [fold_left] / [fold_right]
 
-    As well as two functions to increment/decrement an multi-dimensional index : 
+    All these functions are designed to work with Genarrays of arbitrary dimensions, and the index is represented as an array of integers.
+    There are potentially an infinite number of ways to iterate over a multi-dimensional array. The functions in this module use [incr], [decr], 
+    [incr_last] and [decr_last] for this and there is no way to change this behavior (for the time being). 
     - [incr] / [decr]
     - [incr_last] / [decr_last]
  *)
@@ -96,7 +98,7 @@ val incr : int array -> int array -> bool
     Given an index {m i(i_0,i_1, ..., i_{n-1})} of dimension {m d(d_0, d_1, ..., d_{n-1})} such that 
     {m \forall k \in [0;n-1]} with {m 0 \leqslant i_k < d_k}, the function increments the index {m i} according to the following recursive algorithm: 
 
-    - if {m i_0 < n_0 - 1} then {m i_0 = i_0 + 1}   
+    - if {m i_0 < d_0 - 1} then {m i_0 = i_0 + 1}   
     - else {m i_0 = 0} and {m i_1} is incremented by one according the same alogrithm as {m i_0}.  
     
     So for an index {m i} of dimensions {m d(2,2,3)} in the space {m \{0,1\}\times\{0,1\}\times\{0,1,2\}}, applying [incr] to {m i=(0,0,0)} several time will 

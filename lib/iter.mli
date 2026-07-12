@@ -27,50 +27,57 @@ open Bigarray
     [decr_last] for this and there is no way to change this behavior (for the
     time being).
     - [incr] / [decr]
-    - [incr_last] / [decr_last] 
+    - [incr_last] / [decr_last]
 
     {1 Example}
-    First define the size of the multi-dimensional array you want to iterate over : 
-    {[ let dims = [| 3; 1 ; 2 |] ]}
-    Second, create the array itself : 
-    {[ let a = Genarray.init int32 c_layout dims (fun _ -> 0)]}
-    Third define the index used to iterate over the array : 
-    {[ let index = Array.make (Array.length dims) 0 ]}
+    First define the size of the multi-dimensional array you want to iterate
+    over :
+    {[
+    let dims = [| 3; 1; 2 |]
+    ]}
+    Second, create the array itself :
+    {[
+    let a = Genarray.init int32 c_layout dims (fun _ -> 0)
+    ]}
+    Third define the index used to iterate over the array :
+    {[
+    let index = Array.make (Array.length dims) 0
+    ]}
     Finally, use [incr] or [incr_last] to iterate over the array and print the
     values of the elements.
     {[
-       let array_to_string i = Array.fold_left 
+       let array_to_string i = Array.fold_left
           (fun acc x -> acc ^ (string_of_int x) ^ ", ") "" i in
-       let rec set_elements array index counter = 
+       let rec set_elements array index counter =
        let () = Genarray.set array index counter in
-       let () = Printf.printf "Set element at index %s to value %d\n" 
+       let () = Printf.printf "Set element at index %s to value %d\n"
           (array_to_string index) counter in
        if GenArrayIter.Iter.incr index dims then
          set_elements array index (counter + 1)
        else
-         array 
+         array
     ]}
-    And run the function [set_elements] to set the values of the elements of the array
+    And run the function [set_elements] to set the values of the elements of the
+    array
     {[
-        let () = Printf.printf "Initial index: %s\n" (array_to_string index) in
-        let _ = set_elements array1 index 0 in 
-        Printf.printf "Final value of the index: %s" (array_to_string index)
+    let () = Printf.printf "Initial index: %s\n" (array_to_string index) in
+    let _ = set_elements array1 index 0 in
+    Printf.printf "Final value of the index: %s" (array_to_string index)
     ]}
-    
+
     Et voilà !
-    {[ 
-    Initial index: 0 0 0              
+    {[
+    Initial index: 0 0 0
     Set element at index 0 0 0  to value 0
     Set element at index 1 0 0  to value 1
     Set element at index 2 0 0  to value 2
     Set element at index 0 0 1  to value 3
     Set element at index 1 0 1  to value 4
     Set element at index 2 0 1  to value 5
-    Final value of the index: 0 0 0 
-    ]}  
+    Final value of the index: 0 0 0
+    ]}
 
-    {1 API}
-*)
+    {1 API} *)
 
 val iter : ('a -> unit) -> ('a, 'b, 'c) Genarray.t -> unit
 (** [iter f a] applies the function [f] in turn to each element of the array

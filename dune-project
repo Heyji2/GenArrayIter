@@ -1,7 +1,7 @@
 (lang dune 3.6)
 
 (name GenArrayIter)
-(version "0.1")
+(version "0.3")
 
 (generate_opam_files true)
 

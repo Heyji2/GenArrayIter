@@ -34,6 +34,9 @@ jobs:
           ocaml-compiler: "5.2"
 
       - uses: ocaml/setup-ocaml/lint-doc@v3
+
+      - name: Remplacer le CSS d'odoc par le nôtre
+        run: cp doc/odoc.css _build/default/_doc/_html/odoc.support/odoc.css
      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

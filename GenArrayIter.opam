@@ -26,7 +26,7 @@ homepage: "https://github.com/Heyji2/GenArrayIter"
 doc: "https://heyji2.github.io"
 bug-reports: "https://github.com/Heyji2/GenArrayIter/issues"
 depends: [
-  "ocaml"
+  "ocaml" {>= "4.12"}
   "dune" {>= "3.6"}
   "ounit2"
   "odoc" {with-doc & >= "2.2"}

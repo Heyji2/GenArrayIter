@@ -29,7 +29,7 @@ depends: [
   "ocaml"
   "dune" {>= "3.6"}
   "ounit2"
-  "odoc"
+  "odoc" {with-doc & >= "2.2"}
 ]
 build: [
   ["dune" "subst"] {dev}

@@ -93,8 +93,8 @@ val fold_right :
     array [a] *)
 
 val incr : int array -> int array -> bool
-(** Given an index {m i(i_0,i_1, ..., i_\{n-1\})} of dimension
-    {m d(d_0, d_1, ..., d_\{n-1\})} such that {m \forall k \in [0;n-1]} with
+(** Given an index {m i(i_0,i_1, ..., i_{n-1})} of dimension
+    {m d(d_0, d_1, ..., d_{n-1})} such that {m \forall k \in [0;n-1]} with
     {m 0 \leqslant i_k < d_k}, the function increments the index {m i} according
     to the following recursive algorithm:
 
@@ -139,6 +139,6 @@ val decr : int array -> int array -> bool
 (** Same as [incr] but in decrementing instead of incrementing. *)
 
 val decr_last : int array -> int array -> bool
-(** Same as [decr] but instead of decrementing the first dimention ({m i_0}) of
-    the index {m i(i_0, ..., i_\{n-1\})}, decrements the last dimension first
-    ({m i_\{n-1\}}) *)
+(** Same as [decr] but instead of decrementing the first dimention {m i_0} of
+    the index {m i(i_0, ..., i_{n-1})}, decrements the last dimension first
+    ({m i_{n-1}}) *)

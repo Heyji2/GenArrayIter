@@ -29,7 +29,8 @@ open Bigarray
     - [incr] / [decr]
     - [incr_last] / [decr_last]
 
-    {1 Example}
+    {b Example}  
+
     First define the size of the multi-dimensional array you want to iterate
     over :
     {[
@@ -66,7 +67,7 @@ open Bigarray
     ]}
 
     Et voilà !
-    {[
+    {@bash[
     Initial index: 0 0 0
     Set element at index 0 0 0  to value 0
     Set element at index 1 0 0  to value 1
@@ -77,7 +78,8 @@ open Bigarray
     Final value of the index: 0 0 0
     ]}
 
-    {1 API} *)
+    {1 API} 
+*)
 
 val iter : ('a -> unit) -> ('a, 'b, 'c) Genarray.t -> unit
 (** [iter f a] applies the function [f] in turn to each element of the array

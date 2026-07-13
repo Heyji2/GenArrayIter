@@ -1,7 +1,7 @@
 (lang dune 3.6)
 
 (name GenArrayIter)
-(version "0.3")
+(version "0.3.1")
 
 (generate_opam_files true)
 
@@ -24,4 +24,4 @@
     A much richer (and heavier) library providing (I assume) the same functionality (and much more) in OCaml would be {{: https://github.com/owlbarn/owl/}[Owl]}.")
  (depends (ocaml (>= 4.12)) dune ounit2 (odoc (and :with-doc (>= 2.2))))
  (tags
-  (topics "Genarray" "iter" "iteration" "mapping" "folding" "Owl" "Bigarray" "multi-dimensional" "array")))
+  ("Genarray" "iter" "iteration" "mapping" "folding" "Owl" "Bigarray" "multi-dimensional" "array")))

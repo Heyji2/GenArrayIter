@@ -41,7 +41,7 @@ jobs:
           cp doc/odoc.css _build/default/_doc/_html/odoc.support/odoc.css  
      
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: "_build/default/_doc/_html"
 
